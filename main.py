@@ -1,14 +1,14 @@
-from os import getenv
+import os
 import json
 from flask import Flask
 import requests
 
 app = Flask(__name__)
-port = int(getenv("PORT", 9099))
+port = int(os.getenv("PORT", 9099))
 
 @app.route('/')
 def run_script():
-	if getenv("TOUCHPOINTS_API_KEY", None) is None:
+	if os.getenv("TOUCHPOINTS_API_KEY", None) is None:
 		print("Please set TOUCHPOINTS_API_KEY environment variable")
 		return 'Not set up'
 
