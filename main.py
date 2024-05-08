@@ -8,11 +8,10 @@ port = int(os.getenv("PORT", 9099))
 
 @app.route('/')
 def run_script():
-	if os.getenv("TOUCHPOINTS_API_KEY", None) is None:
+	api_key = os.getenv("TOUCHPOINTS_API_KEY", None)
+	if api_key is None:
 		print("Please set TOUCHPOINTS_API_KEY environment variable")
 		return 'Not set up'
-
-	api_key = environ["TOUCHPOINTS_API_KEY"]
 
 	print(api_key)
 	response = requests.get("https://api.gsa.gov/analytics/touchpoints/v1/digital_products.json?API_KEY=" + api_key)
